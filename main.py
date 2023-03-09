@@ -45,10 +45,9 @@ def underscore(string):
     return counter
 
 
-client = Client()
-client.login("test_ing4747", "testing123")
-
 def details(username):
+    client = Client()
+    client.login("test_ing4747", "testing123")
     try:
         info = client.user_info_by_username(username)
         info = dict(info)
@@ -63,7 +62,9 @@ def details(username):
         media_count = info["media_count"]
         follower_count = info["follower_count"]
         following_count = info["following_count"]
+        client.logout()
         return (len_username,len_fullname,num_in_username,under_in_username,is_bio,is_verified,is_private,is_business,media_count,follower_count,following_count)
+
     except instagrapi.exceptions.RateLimitError:
         return 0
     except:
