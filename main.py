@@ -48,11 +48,11 @@ def underscore(string):
 def details(username):
     try:
         client = Client()
-        client.login("test_ing4747", "testing123")
+        client.login("testing1234871", "testing123")
     except instagrapi.exceptions.UnknownError:
         client.logout()
         client = Client()
-        client.login("test_ing4747", "testing123")
+        client.login("testing1234871", "testing123")
     try:
         info = client.user_info_by_username(username)
         info = dict(info)
