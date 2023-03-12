@@ -52,7 +52,7 @@ def details(username):
     except instagrapi.exceptions.UnknownError:
         client.logout()
         client = Client()
-        client.login("testing1234871", "testing123")
+        client.login("test_ing4747", "testing123")
     try:
         info = client.user_info_by_username(username)
         info = dict(info)
