@@ -67,8 +67,9 @@ def details(username):
         media_count = info["media_count"]
         follower_count = info["follower_count"]
         following_count = info["following_count"]
+        profile = info["profile_pic_url"]
         client.logout()
-        return (len_username,len_fullname,num_in_username,under_in_username,is_bio,is_verified,is_private,is_business,media_count,follower_count,following_count)
+        return (len_username,len_fullname,num_in_username,under_in_username,is_bio,is_verified,is_private,is_business,media_count,follower_count,following_count,profile)
 
     except instagrapi.exceptions.RateLimitError:
         return 0
@@ -130,13 +131,13 @@ button[title="View fullscreen"]{
 '''
 
 
-col1, col2 = st.columns([1,1],gap="small")
+col1,col2,col3,col4 = st.columns([1,1,1,3],gap="small")
+
+
 with col1:
     st.title("InstaBot Identifier")
-    st.image("insta.png")
-    st.markdown(hide_img_fs, unsafe_allow_html=True)
 
-with col2:
+with col4:
     container = st.container()
     container.text("   ")
     input_data = container.text_input(label="Search for a username",value="instagram")
@@ -151,6 +152,16 @@ with col2:
         output = model.predict_proba([[V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7], V[8], V[9], V[10]]])
         fig = figure(output[0][0])
         container.plotly_chart(fig, use_container_width=False, config={"displayModeBar": False})
+with col2:
+    link = V[11]
+    st.text("   ")
+    st.text("   ")
+    st.image("insta.png", width=90)
+    st.markdown(hide_img_fs, unsafe_allow_html=True)
 
 with col1:
+    st.metric(label="Followers",value=V[9])
     st.subheader(f"{input_data} is {output[0][0]*100}% real")
+
+with col2:
+    st.metric(label="Following",value=V[10])
