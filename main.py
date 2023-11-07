@@ -67,7 +67,7 @@ def details(username):
     except instagrapi.exceptions.RateLimitError:
         return 0
     except:
-        return 1
+        return (9,9,0,0,True,True,False,True,12809,4320045,23,None)
 
 def figure(val=0):
     fig = go.Figure(go.Indicator(
